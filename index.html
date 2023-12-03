@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <script>
+        //
+        function createRandomArray() {
+            const randomArray = [];
+            for (let i = 0; i < 5; i++) {
+                randomArray.push(parseInt(prompt("Введите число:")));
+            }
+            return randomArray;
+        }
+
+        //массив, в котором собраны все элементы из двух массивов без повторений
+        function mergeArrays(array1, array2) {
+            const resultArray = [];
+            array1.forEach(function (element) {
+                if (resultArray.indexOf(element) === -1) {
+                    resultArray.push(element);
+                }
+            });
+            array2.forEach(function (element) {
+                if (resultArray.indexOf(element) === -1) {
+                    resultArray.push(element);
+                }
+            });
+            return resultArray;
+        }
+
+        //массив в котором собраны общие элементы без повторений
+        function commonElements(array1, array2) {
+            const resultArray = [];
+            array1.forEach(function (element) {
+                if (array2.some(function (el) { return el === element; }) && resultArray.indexOf(element) === -1) {
+                    resultArray.push(element);
+                }
+            });
+            return resultArray;
+        }
+        function InFirstArrayNotInSecond(array1, array2) {
+            const resultArray = [];
+            array1.forEach(function (element) {
+                if (!array2.some(function (el) { return el === element; }) && resultArray.indexOf(element) === -1) {
+                    resultArray.push(element);
+                }
+            });
+            return resultArray;
+        }
+
+        const randomArray1 = createRandomArray();
+        const randomArray2 = createRandomArray();
+
+
+        console.log("массив 1:", randomArray1);
+        console.log("массив 2:", randomArray2);
+
+        const mergedArray = mergeArrays(randomArray1, randomArray2);
+        console.log("Объединение массивов без повторений:", mergedArray);
+
+        const commonArray = commonElements(randomArray1, randomArray2);
+        console.log("общие элементы без повторений:", commonArray);
+
+        const newArray = InFirstArrayNotInSecond(randomArray1, randomArray2);
+        console.log("Елементы из первого массива которых нет во втором:", newArray);
+    </script>
+</body>
+</html>
